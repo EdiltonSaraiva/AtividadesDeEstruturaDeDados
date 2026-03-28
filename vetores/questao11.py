@@ -8,9 +8,9 @@ print("")
 
 for i in range(len(vetor_numero)):
     vetor_numero[i] = int(input("Digite o valor :\t"))
-print("Vetor criado com sucesso:\n", "VETOR -", vetor_numero, "\n")
+print("Vetor criado com sucesso!")
 
 for j in range(len(vetor_numero_invertido)):
     vetor_numero_invertido[j] = vetor_numero[i]
     i -= 1
-print("O seu vetor com os valores na ordem iversa:\n", "VETOR -", vetor_numero_invertido, "\n")
+print("\nO seu vetor com os valores na ordem iversa:\n", "VETOR -", vetor_numero_invertido, "\n")
