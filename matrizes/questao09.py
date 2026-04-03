@@ -8,21 +8,27 @@ matriz_distancias = [
 
 print("\nA Tabela abaixo representa a distância entre varias cidades:\n")
 
-for impressao_linhas in matriz_distancias:
-    for impressao_colunas in impressao_linhas:
-        print(f"{impressao_colunas:2d}", end = "    ")
+def gerar_tabela_cidades():
+    print("-" * 27)
     print()
-    print()
+    for impressao_linhas in matriz_distancias:
+        for impressao_colunas in impressao_linhas:
+            print(f"{impressao_colunas:2d}", end = "    ")
+        print()
+        print()
+    print("-" * 27)
+
+
+gerar_tabela_cidades()
 
 print("\nVocê pode interagir com os valores desta tabela:\n")
 print("1 - Indique duas cidades (valores de Linha e Coluna);")
 print("2 - Descubra a distância entre as cidades indicadas;")
 print("3 - Veja o total percorrido.\n")
 
-distancia_cidades = [int] * 6
-distancia_percorrida, percurso_total = 0, 0
+percurso_total = 0
 
-for contagem_percurso in range(len(distancia_cidades)):
+for contagem_percurso in range(6):
     
     print("\nINDIQUE A COORDENADA:\n")
 
@@ -34,17 +40,19 @@ for contagem_percurso in range(len(distancia_cidades)):
     linha_posicao_segunda_cidade = int(input("Digite o valor da Linha da cidade:\t"))
     coluna_posicao_segunda_cidade = int(input("Digite o valor da Coluna da cidade:\t"))
 
-    if linha_posicao_primeira_cidade + coluna_posicao_primeira_cidade <= 10 and linha_posicao_segunda_cidade + coluna_posicao_segunda_cidade <= 10:
-        
-        for adicionando_distancia in range(len(distancia_cidades)):
-            distancia_cidades[adicionando_distancia] = matriz_distancias[linha_posicao_primeira_cidade][coluna_posicao_primeira_cidade] + matriz_distancias[linha_posicao_segunda_cidade][linha_posicao_segunda_cidade]
-            percurso_total = matriz_distancias[adicionando_distancia]
-            percurso_total += 1
+    if 0 <= linha_posicao_primeira_cidade < 5 and 0 <= coluna_posicao_primeira_cidade < 5 and 0 <= linha_posicao_segunda_cidade < 5 and 0 <= coluna_posicao_segunda_cidade < 5:
+        valor1 = matriz_distancias[linha_posicao_primeira_cidade][coluna_posicao_primeira_cidade]
+        valor2 = matriz_distancias[linha_posicao_segunda_cidade][coluna_posicao_segunda_cidade]
 
-            print("\nDistância percorrida = ", percurso_total[adicionando_distancia], "km\n")
+        distancia_entre_cidades = valor1 + valor2
+        percurso_total += distancia_entre_cidades
+
+        print("\nDistância percorrida = ", distancia_entre_cidades, "km\n")
+
+        gerar_tabela_cidades()
 
     else:
         print("\nO posição da Cidade Não Existe. Linha ou Coluna Indicados")
         print("ultrapassam o limite de 5 linhas e 5 colunas. Tente novamente.\n")
 
-print(f"\nPercurso total = {distancia_cidades[0]} + {distancia_cidades[1]} + {distancia_cidades[2]} + {distancia_cidades[3]} + {distancia_cidades[4]} + {distancia_cidades[5]} = {percurso_total}km\n")
+print(f"\nVocê atingiu o limite de cidades para visitar. PERCURSO TOTAL = {percurso_total}km\n")
